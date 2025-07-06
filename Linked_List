@@ -1,0 +1,36 @@
+2816. Double a Number Represented as a Linked List
+class Solution {
+    public ListNode doubleIt(ListNode head) {
+        ListNode tr=head;
+        ListNode pre=null;
+        while(tr!=null){
+            ListNode fwd=tr.next;
+            tr.next=pre;
+            pre=tr;
+            tr=fwd;
+        }
+        int carry=0;
+        ListNode newNode= new ListNode();
+        ListNode ptr=newNode;
+        while(pre!=null){
+            int pro=pre.val*2+carry;
+            int v=pro%10;
+            carry=pro/10;
+            ptr.next=new ListNode(v);
+            ptr=ptr.next;
+            pre=pre.next;  
+        }
+        if(carry!=0)
+        ptr.next=new ListNode(carry);
+        newNode=newNode.next;
+        ListNode tr2=newNode;
+        ListNode pre2=null;
+        while(tr2!=null){
+            ListNode fwd2=tr2.next;
+            tr2.next=pre2;
+            pre2=tr2;
+            tr2=fwd2;
+        }
+        return pre2;
+    }
+}

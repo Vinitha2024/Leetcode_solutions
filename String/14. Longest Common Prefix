@@ -1,0 +1,16 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if(strs==null || strs.length==0)
+          return "";
+        String prefix=strs[0];
+        for(int i=1;i<strs.length;i++){
+            while(!strs[i].startsWith(prefix)){
+                prefix=prefix.substring(0,prefix.length()-1);
+                if(prefix.isEmpty())
+                  return"";
+            }
+        }
+        return prefix;
+    }
+}
+// Insted of sorting and comparing first and last word letters.Just take a first word as prefix and check whether the next word in array is same as prfix by using .startsWith() if not then reduce the prefix until the prefix and the word starting is same .Once the ford is somewhat same as prefix .then move to next word in prefix.
